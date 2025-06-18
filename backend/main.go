@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -41,7 +41,7 @@ func getTicketsHandler(w http.ResponseWriter, r *http.Request) {
 // Handler pour enregistrer un vote
 func voteHandler(w http.ResponseWriter, r *http.Request) {
 	var v Vote
-	body, err := ioutil.ReadAll(r.Body)
+	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		http.Error(w, "Erreur lecture body", http.StatusBadRequest)
 		return
